@@ -8,6 +8,8 @@ const { CourseRouter} = require('./routes/course.js');
 const { adminRouter } = require('./routes/admin.js');
 
 const app = express();
+//Parse the Json bodies
+app.use(express.json())
 
 app.use("/api/v1/user",UserRouter);
 app.use("/api/v1/admin",adminRouter)
