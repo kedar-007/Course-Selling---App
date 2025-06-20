@@ -5,20 +5,28 @@ const UserRouter = Router();
 
 
 UserRouter.post("/signup",(req,res)=>{
+    res.status(201).json({
+        message:"Sighnup Successfully"
+    })
     
 })
     
     
-UserRouter.post("/sigin",(req,res)=>{
-    
+UserRouter.post("/signin",(req,res)=>{
+
+    res.status(201).json({
+        message:"Signin Successfully"
+    })
 })
     
     
-UserRouter.post("/purchases",(req,res)=>{
-    
+UserRouter.get("/purchases",(req,res)=>{
+    res.status(200).json({
+        message:"You Purchased Courses Here"
+    })
 })
 
 
-module.exports({
+module.exports = ({
    UserRouter
 })

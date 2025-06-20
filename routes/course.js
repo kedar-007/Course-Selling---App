@@ -2,10 +2,18 @@ const { Router } = require("express");
 
 const CourseRouter = Router();
 
-CourseRouter.post("/purchase", (req, res) => {});
+CourseRouter.post("/purchase", (req, res) => {
+    res.status(201).json({
+        message:"Course Purchased"
+    })
+});
 
-CourseRouter.post("/preview", (req, res) => {});
+CourseRouter.get("/preview", (req, res) => {
+    res.status(200),json({
+        message:"Fetched the coursess"
+    })
+});
 
-module.exports({
+module.exports = ({
   CourseRouter,
 });
