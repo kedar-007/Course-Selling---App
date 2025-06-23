@@ -1,4 +1,4 @@
-
+require('dotenev').config();
 const express = require('express');
 const mongoose = require("mongoose");
 
@@ -18,7 +18,7 @@ app.use("/api/v1/course",CourseRouter)
 async function main () {
 
     try {
-        const connection = await mongoose.connect("mongodb+srv://kedar:Kedar%407390@gofood.d85dvg9.mongodb.net/Course-Selling")
+        const connection = await mongoose.connect(process.env.MONGO_URL)
         console.log("connected to the database")
     } catch (error) {
         console.log("failed to connect the database")

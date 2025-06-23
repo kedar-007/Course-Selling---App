@@ -1,5 +1,5 @@
-const JWT_USER_SECREAT = "kedar";
-const Admin_JWT = "Kumbhar"
+const JWT_USER_SECREAT = process.env.JWT_USER_SECREAT
+const Admin_JWT = process.env.Admin_JWT
 
 
 module.exports = {
