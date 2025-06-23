@@ -6,14 +6,13 @@ const { JWT_USER_SECREAT } = require("../config");
 //function for the user middleware
 async function userMiddleware(req, res, next) {
   const authHeader = req.headers.authorization;
-
-  if(!authHeader || authHeader.starsWith("Bearer")){
+  if(!authHeader || !authHeader.startsWith("Bearer")){
     return res.status(401).json({
       message:"Missin or Malformed token"
     })
   }
 
-  const token = authHeader.spilt(" ")[1];
+  const token = authHeader.split(" ")[1];
   
   const decode = jwt.verify(token, JWT_USER_SECREAT);
 
