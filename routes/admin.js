@@ -148,47 +148,48 @@ adminRouter.post("/course", adminMiddleware, async (req, res) => {
 });
 
 adminRouter.put("/course", adminMiddleware, async (req, res) => {
-    try {
-      const adminId = req.adminId;
-      const { title, imageUrl, description, price,courseId} = req.body;
-  
-      const result = await courseModel.updateOne({_id:courseId,
-        creatorId:adminId
-      },{
+  try {
+    const adminId = req.adminId;
+    const { title, imageUrl, description, price, courseId } = req.body;
+
+    const result = await courseModel.updateOne(
+      { _id: courseId, creatorId: adminId },
+      {
         title,
         description,
         imageUrl,
         price,
-      });
-  
-      if (!result) {
-        return res.status(403).json({
-          message: "Unble to add the course",
-        });
       }
-  
-      return res.status(201).json({
-        message: "Course Updated Successdully",
-        data: result,
-      });
-    } catch (error) {
-      res.status(500).json({
-        error: error.message,
-        message: "Internal server error",
+    );
+
+    if (!result) {
+      return res.status(403).json({
+        message: "Unble to add the course",
       });
     }
-  });
-  
-adminRouter.get("/courses/bulk", adminMiddleware,async(req, res) => {
-    const adminId = req.adminId;
 
-    //getting all the coursed
-    const courses = await courseModel.find({
-        creatorId:adminId
-    })
+    return res.status(201).json({
+      message: "Course Updated Successdully",
+      data: result,
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: error.message,
+      message: "Internal server error",
+    });
+  }
+});
+
+adminRouter.get("/courses/bulk", adminMiddleware, async (req, res) => {
+  const adminId = req.adminId;
+
+  //getting all the coursed
+  const courses = await courseModel.find({
+    creatorId: adminId,
+  });
   res.status(200).json({
     message: "All created Courses",
-    Courses:courses
+    Courses: courses,
   });
 });
 
